@@ -11,9 +11,16 @@ public class MainClass
 
 
         Scanner sc = new Scanner(System.in);
+        Cumparator cumparator = new Cumparator("user");
 
 
+        //date cumparator
+        String nume;
+        int varsta;
+        String adresa;
+        String sex;
 
+        //variabile in main
         int opt,ok = 1;
         Character sort_opt;
         Character buy_opt;
@@ -106,6 +113,24 @@ public class MainClass
                 IESIRE:
                 while (ok == 1) {
 
+                    System.out.println("Date Personale");
+                    System.out.println("Nume: ");
+                    nume = sc.next();
+                    System.out.println("adresa: ");
+                    adresa = sc.nextLine();
+                    adresa = sc.nextLine();
+                    System.out.println("sex");
+                    sex = sc.next();
+                    System.out.println("varsta: ");
+                    varsta = sc.nextInt();
+
+                    cumparator.DatePersonale(nume,sex,adresa,varsta);
+
+                    System.out.println(cumparator.nume);
+                    System.out.println(cumparator.adresa);
+                    System.out.println(cumparator.sex);
+                    System.out.println(cumparator.varsta);
+
 
 
                 System.out.println("MENIU CUMPARATOR");
@@ -115,7 +140,7 @@ public class MainClass
                 System.out.println("3.Programare test drive");
                 System.out.println("4.Cumparare masina");
                 System.out.println("5.Revenire la logare");
-                System.out.println("6.Iesire meniu cumparator");
+                System.out.println("6.Iesire program");
 
 
                 System.out.println("introduceti cifra corespunzatoare optiunii dorite");
@@ -173,6 +198,7 @@ public class MainClass
                         break IESIRE;
                     case 6:
                         ok = 0;
+                        System.exit(0);
                         break;
 
 
