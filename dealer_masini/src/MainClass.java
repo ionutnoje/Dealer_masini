@@ -1,5 +1,6 @@
 import jdk.swing.interop.SwingInterOpUtils;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 
@@ -13,26 +14,59 @@ public class MainClass
 
 
 
-        int opt;
+        int opt,ok = 1;
         Character sort_opt;
         Character buy_opt;
         int ver_inf_masina;
         int opt_logare;
+        String parola_CEO;
 
 
-        System.out.println("Bine ati venit la dealer.com");
+        System.out.println("Bine ati venit la DealerDeMasini.com");
         System.out.println("1.CEO firma       2.Cumparator");
         System.out.println("Introduceti valoarea corespunzatoare statutului dvs");
         opt_logare = sc.nextInt();
 
         if(opt_logare == 1)
         {
-            System.out.println("MENIU CEO");
-            System.out.println("1.Introducere masina in baza de date");
-            System.out.println("2.Interogare sold firma");
-            System.out.println("3.Depozitare suma in contul firmei");
-            System.out.println("4.Retragere suma din contul firmei");
-            System.out.println("5.Revenire la logare");
+
+            while(ok == 1)
+            {
+                System.out.println("Introduceti parola CEO:  (hint: admin)");
+                parola_CEO = sc.next();
+                if(Objects.equals(parola_CEO, "admin"))
+                {
+                    System.out.println("MENIU CEO");
+                    System.out.println("1.Introducere masina in baza de date");
+                    System.out.println("2.Interogare sold firma");
+                    System.out.println("3.Depozitare suma in contul firmei");
+                    System.out.println("4.Retragere suma din contul firmei");
+                    System.out.println("5.Revenire la meniul principal");
+                    System.out.println("6.Iesire program");
+
+                }
+                else
+                {
+                    System.out.println("Ati introdus parola gresita");
+                    System.out.println("Doriti sa incercati din nou?[Y/N]");
+                    sort_opt = sc.next().charAt(0);
+
+                    if(sort_opt == 'Y' || sort_opt == 'y')
+                    {
+
+
+
+                    }
+                    if(sort_opt == 'n' || sort_opt == 'N')
+                    {
+                        System.out.println("Programul se inchide!");
+                        System.exit(0);
+                    }
+
+                }
+            }
+
+
 
         }
         else if(opt_logare == 2)
@@ -105,6 +139,10 @@ public class MainClass
 
 
             }
+        }
+        else
+        {
+            System.out.println("Ati introdus o valoare gresita");
         }
 
 
