@@ -115,6 +115,7 @@ public class MainClass
                 System.out.println("3.Programare test drive");
                 System.out.println("4.Cumparare masina");
                 System.out.println("5.Revenire la logare");
+                System.out.println("6.Iesire meniu cumparator");
 
 
                 System.out.println("introduceti cifra corespunzatoare optiunii dorite");
@@ -170,6 +171,9 @@ public class MainClass
                         break;
                     case 5:
                         break IESIRE;
+                    case 6:
+                        ok = 0;
+                        break;
 
 
                 }
