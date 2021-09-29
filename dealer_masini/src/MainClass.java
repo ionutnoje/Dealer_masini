@@ -32,10 +32,15 @@ public class MainClass
 
             while(ok == 1)
             {
+
+
                 System.out.println("Introduceti parola CEO:  (hint: admin)");
                 parola_CEO = sc.next();
+                INNER:
                 if(Objects.equals(parola_CEO, "admin"))
                 {
+
+
                     System.out.println("MENIU CEO");
                     System.out.println("1.Introducere masina in baza de date");
                     System.out.println("2.Interogare sold firma");
@@ -54,7 +59,7 @@ public class MainClass
                     if(sort_opt == 'Y' || sort_opt == 'y')
                     {
 
-
+                        break INNER;
 
                     }
                     if(sort_opt == 'n' || sort_opt == 'N')
