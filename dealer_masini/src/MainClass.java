@@ -30,6 +30,17 @@ public class MainClass
         int opt_logare;
         String parola_CEO;
 
+
+        //variabile pt Masina
+        String culoare;
+        String tip;
+        String marca;
+        String model;
+        int km;
+        int pret;
+
+
+
         while(ok == 1)
         {
 
@@ -68,6 +79,14 @@ public class MainClass
 
                         switch (opt) {
                             case 1:
+
+                                System.out.println("Marca: ");
+                                marca = sc.next();
+
+
+
+
+
 
                                 break;
                             case 2:
@@ -128,7 +147,7 @@ public class MainClass
                     System.out.println("suma cont: ");
                     suma = sc.nextDouble();
 
-                    cb.depozitaresuma(suma);
+                    cb.depunereBani(suma);
 
 
                     cumparator.DatePersonale(nume,sex,adresa,varsta);
@@ -138,6 +157,7 @@ public class MainClass
                     System.out.println(cumparator.sex);
                     System.out.println(cumparator.varsta);
                     System.out.println(cb.get_sold() + "$");
+
 
 
 
