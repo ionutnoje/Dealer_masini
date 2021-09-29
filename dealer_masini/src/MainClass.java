@@ -12,6 +12,7 @@ public class MainClass
 
         Scanner sc = new Scanner(System.in);
         Cumparator cumparator = new Cumparator("user");
+        ContBancar cb = new ContBancar(0);
 
 
         //date cumparator
@@ -19,6 +20,7 @@ public class MainClass
         int varsta;
         String adresa;
         String sex;
+        double suma;
 
         //variabile in main
         int opt,ok = 1;
@@ -123,6 +125,11 @@ public class MainClass
                     sex = sc.next();
                     System.out.println("varsta: ");
                     varsta = sc.nextInt();
+                    System.out.println("suma cont: ");
+                    suma = sc.nextDouble();
+
+                    cb.depozitaresuma(suma);
+
 
                     cumparator.DatePersonale(nume,sex,adresa,varsta);
 
@@ -130,6 +137,8 @@ public class MainClass
                     System.out.println(cumparator.adresa);
                     System.out.println(cumparator.sex);
                     System.out.println(cumparator.varsta);
+                    System.out.println(cb.get_sold() + "$");
+
 
 
 

@@ -1,6 +1,6 @@
 public class Cumparator
 {
-    ContBancar cb = new ContBancar();
+    ContBancar cb = new ContBancar(0);
 
     String nume;
     int varsta;
@@ -12,11 +12,18 @@ public class Cumparator
     {
         this.nume = nume;
     }
+
+
+
     public void DatePersonale(String nume, String sex, String adresa, int varsta)
     {
         this.nume = nume;
         this.sex = sex;
         this.adresa = adresa;
         this.varsta = varsta;
+
+
     }
+
+
 }
