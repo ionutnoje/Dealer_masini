@@ -13,6 +13,8 @@ public class Masina
         this.marca = marca;
     }
 
+
+
     public void CreareMasina(String marca, String culoare, String tip, String model, int km, double pret)
     {
         this.marca = marca;

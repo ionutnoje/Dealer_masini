@@ -1,5 +1,4 @@
-public class Cumparator
-{
+public class Ceo {
     ContBancar cb = new ContBancar(0);
 
     String nume;
@@ -8,14 +7,14 @@ public class Cumparator
     String sex;
 
 
-    public Cumparator(String nume)
+    public Ceo(String nume)
     {
         this.nume = nume;
     }
 
 
 
-    public void Cumparator(String nume, String sex, String adresa, int varsta)
+    public void Ceo(String nume, String sex, String adresa, int varsta)
     {
         this.nume = nume;
         this.sex = sex;
@@ -24,6 +23,4 @@ public class Cumparator
 
 
     }
-
-
 }
