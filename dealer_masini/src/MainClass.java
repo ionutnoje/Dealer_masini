@@ -9,7 +9,6 @@ public class MainClass
 {
     public static void main(String[] args) {
 
-        Garaj garaj = new Garaj(1);
         Scanner sc = new Scanner(System.in);
         Cumparator cumparator = new Cumparator("user");
         ContBancar cb = new ContBancar(0);

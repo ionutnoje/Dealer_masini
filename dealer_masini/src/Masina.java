@@ -6,6 +6,7 @@ public class Masina
     String model;
     int km;
     double pret;
+    int hp;
 
 
     public Masina(String marca)
@@ -15,7 +16,7 @@ public class Masina
 
 
 
-    public void CreareMasina(String marca, String culoare, String tip, String model, int km, double pret)
+    public Masina(String marca, String model, String tip,int hp, String culoare, int km, double pret)
     {
         this.marca = marca;
         this.culoare = culoare;

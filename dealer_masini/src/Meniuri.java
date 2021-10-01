@@ -14,6 +14,10 @@ public class Meniuri {
      String parola_CEO;
      char sort_opt;
 
+    //meniu CEO
+    int nr_masini ;
+
+
 
     //meniu persoana
      String nume;
@@ -30,6 +34,7 @@ public class Meniuri {
 
     //meniu cumparare
     int opt_maniu_cumparare;
+    int adaugare_ceo = 0;
 
 
 
@@ -37,6 +42,7 @@ public class Meniuri {
      Scanner sc = new Scanner(System.in);
      Cumparator cumparator = new Cumparator("user");
      Ceo ceo = new Ceo("Boss");
+     Garaj grj = new Garaj();
 
 
     public void MeniuPrincipal()
@@ -131,18 +137,23 @@ public class Meniuri {
 
                 switch (opt) {
                     case 1:
-                        int nr = 1;
                         //introducere masina in baza de date
+                        adaugare_ceo = 1;
+                        grj.CreareGaraj();
                         break;
                     case 2:
                         System.out.println("detineti " + cb.get_sold() + "$ in contul firmei");
 
                         break;
                     case 3:
-                        //Depozitare suma in contul firmei
+                        System.out.println("valoarea pe care vreti sa o depozitati: ");
+                        int depunere_suma = sc.nextInt();
+                        cb.depunereBani(depunere_suma);
                         break;
                     case 4:
-                        //Retragere suma din contul firmei
+                        System.out.println("valoarea pe care vreti sa o retrageti: ");
+                        int retragere_suma = sc.nextInt();
+                        cb.retragereBani(retragere_suma);
                         break;
                     case 5:
                         MeniuPrincipal();
@@ -269,6 +280,21 @@ public class Meniuri {
 
                 case 1:
                     System.out.println("afisare toate masinile din inventar");
+                    nr_masini = grj.getNr_masini_dupa_adaugare_ceo();
+                    if(adaugare_ceo == 0){
+
+                        grj.CreareGarajFaraAdaugara();
+                    }
+                    else
+                    {
+                        grj.CreareGaraj();
+                    }
+
+                    for(int j = 1; j <= 11; j++)
+                    {
+                        System.out.println("\nmasina["+ j +"]: "+ grj.garaj[j].marca + " " + grj.garaj[j].model + " " + grj.garaj[j].tip + " " + grj.garaj[j].culoare
+                        + " " + grj.garaj[j].km + " km" + "pret: " + grj.garaj[j].pret + "$");
+                    }
                     break;
                 case 2:
 
