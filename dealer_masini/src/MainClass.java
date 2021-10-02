@@ -239,7 +239,7 @@ public class MainClass
 //
 //        }
 
-            meniuri.MeniuPrincipal();
+            meniuri.CreareSpatiu();
 
     }
 }

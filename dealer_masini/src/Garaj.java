@@ -19,6 +19,8 @@ public class Garaj {
     int nr_masini_dupa_adaugare_ceo;
     int nr_spatii_libere;
     int index;
+    int nr_spatii_ocupate;
+    int val_introducere_ceo = 0;
 
 
 
@@ -34,17 +36,16 @@ public class Garaj {
 
     public void AdaugareInGarajCeo()
     {
+        int aux = VerificareNrMasiniInGaraj();
+        System.out.println("aux = " + aux);
         System.out.println("introduceti numarul de masini pe care vreti sa le introduceti in baza de date(nu mai multe de 10): ");
         int nr_masini_adaugate_ceo = sc.nextInt();
-        garaj = new Masina[nr_spatii_garaj];
+        //garaj = new Masina[nr_spatii_garaj];
 
 
 
-        nr_masini_dupa_adaugare_ceo = nr_masini_existente + nr_masini_adaugate_ceo;
-        //nr_spatii_libere = nr_spatii_garaj - nr_masini_dupa_adaugare_ceo;
+        for(int i = aux + 1  ; i <=  nr_masini_adaugate_ceo + aux; i++)
 
-
-        for(int i = nr_masini_existente + 1 + nr_masini_adaugate_ceo  ; i <= nr_masini_existente + nr_masini_adaugate_ceo; i++)
         {
             System.out.println("\n\nMasina de pe indexul" + i);
             System.out.println("["+ i +"] " + "Marca: ");
@@ -99,7 +100,9 @@ public class Garaj {
 
     public void AfisareMasini()
     {
-        for(int i = 1; i <= 10 ; i++)
+        int aux = VerificareNrMasiniInGaraj();
+        System.out.println("aux = " + aux);
+        for(int i = 1; i <= aux ; i++)
         {
             System.out.println("\nmasina["+ i +"]: "+ garaj[i].marca + " " + garaj[i].model + " " + garaj[i].tip + " " + garaj[i].culoare
                     + " " + garaj[i].km + " km" + "pret: " + garaj[i].pret + "$");
@@ -109,7 +112,9 @@ public class Garaj {
 
     public void AfisareMasinaCuIndex(int index)
     {
-        for(int i = 1; i < nr_spatii_garaj; i++)
+        int aux = VerificareNrMasiniInGaraj();
+        System.out.println("aux = " + aux);
+        for(int i = 1; i <= aux; i++)
         {
             if(i == index)
             {
@@ -117,7 +122,37 @@ public class Garaj {
                         + " " + garaj[i].km + " km" + "pret: " + garaj[i].pret + "$");
             }
 
+
         }
+    }
+
+
+
+
+
+    public int ValIntroducereCeo(int val_introducere_ceo)
+    {
+        this.nr_masini_existente += val_introducere_ceo;
+        return this.nr_masini_existente;
+    }
+
+
+    public int VerificareNrMasiniInGaraj()
+    {   int nr_masini_dupa_verificare = 0;
+        int ok = 1;
+        int indice = 1;
+        while(ok ==1)
+        {
+            if(garaj[indice] != null)
+            {
+                nr_masini_dupa_verificare++;
+                indice++;
+            }
+            else{
+                ok = 0;
+            }
+        }
+        return nr_masini_dupa_verificare;
     }
 
 

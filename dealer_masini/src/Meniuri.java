@@ -45,6 +45,12 @@ public class Meniuri {
      Ceo ceo = new Ceo("Boss");
      Garaj grj = new Garaj();
 
+    public void CreareSpatiu()
+    {
+        grj.CreareGarajFaraAdaugara();
+        MeniuPrincipal();
+    }
+
 
     public void MeniuPrincipal()
     {
@@ -72,7 +78,7 @@ public class Meniuri {
                     break;
             }
 
-        //initializare garaj
+
 
     }
 
@@ -142,6 +148,7 @@ public class Meniuri {
                     case 1:
                         //introducere masina in baza de date
                         adaugare_ceo = 1;
+                        grj.ValIntroducereCeo(adaugare_ceo);
                         grj.AdaugareInGarajCeo();
                         break;
                     case 2:
@@ -284,7 +291,7 @@ public class Meniuri {
             switch (opt) {
 
                 case 1:
-                    grj.CreareGarajFaraAdaugara();
+
                     System.out.println("afisare toate masinile din inventar");
                     grj.AfisareMasini();
                     System.out.println("\nApasati orice tasta + ENTER ca sa va intoarceti la meniul Cumparator");
@@ -293,7 +300,7 @@ public class Meniuri {
 
                     break;
                 case 2:
-                    grj.CreareGarajFaraAdaugara();
+
                     System.out.println("Introduceti indicele masinii careia vreti sa se afiseze informatiile: ");
                     ver_inf_masina = sc.nextInt();
                     grj.AfisareMasinaCuIndex(ver_inf_masina);
