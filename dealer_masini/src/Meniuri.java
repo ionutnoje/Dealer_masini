@@ -30,6 +30,7 @@ public class Meniuri {
     //meniu persoana extins
      int ver_inf_masina;
      char buy_opt;
+     String buffer;
 
 
     //meniu cumparare
@@ -70,6 +71,8 @@ public class Meniuri {
                     System.out.println("nu e buna optiunea");
                     break;
             }
+
+        //initializare garaj
 
     }
 
@@ -139,7 +142,7 @@ public class Meniuri {
                     case 1:
                         //introducere masina in baza de date
                         adaugare_ceo = 1;
-                        grj.CreareGaraj();
+                        grj.AdaugareInGarajCeo();
                         break;
                     case 2:
                         System.out.println("detineti " + cb.get_sold() + "$ in contul firmei");
@@ -276,31 +279,27 @@ public class Meniuri {
             opt = sc.nextInt();
 
 
+
+
             switch (opt) {
 
                 case 1:
+                    grj.CreareGarajFaraAdaugara();
                     System.out.println("afisare toate masinile din inventar");
-                    nr_masini = grj.getNr_masini_dupa_adaugare_ceo();
-                    if(adaugare_ceo == 0){
+                    grj.AfisareMasini();
+                    System.out.println("\nApasati orice tasta + ENTER ca sa va intoarceti la meniul Cumparator");
+                    buffer = sc.next();
+                    MeniuCumparatorInitial();
 
-                        grj.CreareGarajFaraAdaugara();
-                    }
-                    else
-                    {
-                        grj.CreareGaraj();
-                    }
-
-                    for(int j = 1; j <= 11; j++)
-                    {
-                        System.out.println("\nmasina["+ j +"]: "+ grj.garaj[j].marca + " " + grj.garaj[j].model + " " + grj.garaj[j].tip + " " + grj.garaj[j].culoare
-                        + " " + grj.garaj[j].km + " km" + "pret: " + grj.garaj[j].pret + "$");
-                    }
                     break;
                 case 2:
-
+                    grj.CreareGarajFaraAdaugara();
                     System.out.println("Introduceti indicele masinii careia vreti sa se afiseze informatiile: ");
                     ver_inf_masina = sc.nextInt();
-                    //tostring ceva
+                    grj.AfisareMasinaCuIndex(ver_inf_masina);
+                    System.out.println("\nApasati orice tasta + ENTER ca sa va intoarceti la meniul Cumparator");
+                    buffer = sc.next();
+                    MeniuCumparatorInitial();
 
                     break;
                 case 3:
