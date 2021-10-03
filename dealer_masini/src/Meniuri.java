@@ -1,6 +1,7 @@
 import java.util.Objects;
 import java.util.Scanner;
 
+
 public class Meniuri {
 
     public Meniuri()
@@ -10,12 +11,10 @@ public class Meniuri {
 
 
      int opt;
-     boolean iesire = true;
      String parola_CEO;
      char sort_opt;
 
-    //meniu CEO
-    int nr_masini ;
+
 
 
 
@@ -29,7 +28,6 @@ public class Meniuri {
 
     //meniu persoana extins
      int ver_inf_masina;
-     char buy_opt;
      String buffer;
 
 
@@ -112,6 +110,11 @@ public class Meniuri {
         sex = sc.next();
         System.out.println("varsta: ");
         varsta = sc.nextInt();
+        if(varsta < 18 || varsta > 100)
+        {
+            System.out.println("Ati introdus o varsta gresita!");
+            System.exit(0);
+        }
         System.out.println("suma cont: ");
         suma = sc.nextDouble();
 
@@ -378,12 +381,9 @@ public class Meniuri {
     {
         System.out.println("Meniu cumparare");
         System.out.println("1.Interogare sold card");
-        System.out.println("2.Vizionare lista masini");
-        System.out.println("3.Upgrade-uri masina");
-        System.out.println("4.Calcul pret final");
-        System.out.println("5.Cumparare integral sau finantare");
-        System.out.println("6.Iesire meniu cumparare");
-        System.out.println("7.Iesire program");
+        System.out.println("2.Alegere masina");
+        System.out.println("3.Iesire meniu cumparare");
+        System.out.println("4.Iesire program");
 
         System.out.println("introduceti valoarea corespunzatoare optiunii dorite: ");
         opt_maniu_cumparare = sc.nextInt();
@@ -395,27 +395,161 @@ public class Meniuri {
                 MeniuCumparare();
                 return;
             case 2:
-                //vizionare lista masini;
+                grj.AfisareMasini();
+                Cumparare();
+                MeniuCumparare();
                 break;
             case 3:
-                //Upgrade-uri masina;
-                break;
-            case 4:
-                //calcul pret final;
-                break;
-            case 5:
-                //Cumparare integral sau finantare;
-                break;
-            case 6:
                 MeniuCumparatorInitial();
                 break;
-            case 7:
+            case 4:
                 System.exit(0);
                 break;
             default:
                 break;
         }
     }
+
+    public void Cumparare()
+    {
+        System.out.println("\nIntroduceti indexul masinii pe care vreti sa o cumparati: ");
+        int opt_cumparare = sc.nextInt();
+        System.out.println("Sunteti sigur de alegerea facuta?[Y/N]");
+        char verificare_alegere = sc.next().charAt(0);
+
+        if (verificare_alegere == 'Y' || verificare_alegere == 'y')
+        {
+
+            double pret_final = (grj.garaj[opt_cumparare].getPret()) + (0.05 * grj.garaj[opt_cumparare].getPret());
+            System.out.println("Pretul masinii este de: " + grj.garaj[opt_cumparare].getPret());
+            System.out.println("Se aplica o taxa de 0.5 din valoarea masinii");
+            try
+            {
+                Thread.sleep(2000);
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
+            System.out.println("Pretul final este: " + pret_final);
+            try
+            {
+                Thread.sleep(2000);
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
+            System.out.println("Se face legatura cu banca...");
+            try
+            {
+                Thread.sleep(2000);
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
+            System.out.println("Se verifica soldul...");
+            try
+            {
+                Thread.sleep(2000);
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
+            int verificare_sold = cb.verificareRetragere(pret_final);
+            if(verificare_sold == 1)
+            {
+                cb.retragereBani(pret_final);
+                System.out.println("Tranzactia a avut loc cu succes!");
+                    try
+                    {
+                        Thread.sleep(2000);
+                    }
+                    catch(InterruptedException ex)
+                    {
+                        Thread.currentThread().interrupt();
+                    }
+                System.out.println("Felicitari,"+ cumparator.nume + "! Sunteti posesorul unui: " + grj.garaj[opt_cumparare].marca + " " + grj.garaj[opt_cumparare].model);
+                    try
+                    {
+                        Thread.sleep(2000);
+                    }
+                    catch(InterruptedException ex)
+                    {
+                        Thread.currentThread().interrupt();
+                    }
+                System.out.println("Masina va fi livrata la adresa: " + cumparator.adresa);
+                    try
+                    {
+                        Thread.sleep(2000);
+                    }
+                    catch(InterruptedException ex)
+                    {
+                        Thread.currentThread().interrupt();
+                    }
+                System.out.println("Doriti sa iesiti din program?[Y/N]");
+                verificare_alegere = sc.next().charAt(0);
+
+                if (verificare_alegere == 'Y' || verificare_alegere == 'y')
+                {
+                    System.exit(0);
+                }
+                else
+                {
+                    MeniuCumparare();
+                }
+
+            }
+            else
+            {
+                System.out.println("Nu aveti suficienti bani pe card!");
+                    try
+                    {
+                        Thread.sleep(2000);
+                    }
+                    catch(InterruptedException ex)
+                    {
+                        Thread.currentThread().interrupt();
+                    }
+                System.out.println("Doriti sa depuneti bani in cont?[Y/N]");
+                verificare_alegere = sc.next().charAt(0);
+
+                if (verificare_alegere == 'Y' || verificare_alegere == 'y')
+                {
+                    System.out.println("Introduceti suma: ");
+                    int depunere = sc.nextInt();
+                    cb.depunereBani(depunere);
+                        try
+                        {
+                            Thread.sleep(2000);
+                        }
+                        catch(InterruptedException ex)
+                        {
+                            Thread.currentThread().interrupt();
+                        }
+                    System.out.println("Se revine la Meniul Cumparare!!");
+                    Cumparare();
+                }
+                else
+                {
+                    System.out.println("Alegeti alta masina!");
+                    Cumparare();
+                }
+            }
+
+        }
+
+
+        if (verificare_alegere == 'n' || verificare_alegere == 'N')
+        {
+            Cumparare();
+        }
+    }
+
+
+
 
     public void DatePersonaleMeniuCumparator()
     {
