@@ -15,29 +15,29 @@ public class Garaj {
     int vin;
     int km;
     double pret;
-    int nr_masini_adaugate_ceo = 0;
+    //int nr_masini_adaugate_ceo = 0;
     int nr_spatii_garaj = 20;
     int hp;
     int nr_masini_existente = 10;
     int nr_masini_dupa_adaugare_ceo;
-    int nr_masini_eliminate_ceo;
-    int nr_spatii_libere;
-    int index;
-    int nr_spatii_ocupate;
-    int val_introducere_ceo = 0;
-    int val_upgradeuri;
-    int opt_cumparare;
-    char verificare_alegere;
-    double pret_final;
+//    int nr_masini_eliminate_ceo;
+//    int nr_spatii_libere;
+//    int index;
+//    int nr_spatii_ocupate;
+//    int val_introducere_ceo = 0;
+//    int val_upgradeuri;
+//    int opt_cumparare;
+//    char verificare_alegere;
+//    double pret_final;
 
 
     public Garaj() {
         System.out.println("initializare garaj");
     }
 
-    public int getNr_masini_dupa_adaugare_ceo() {
-        return nr_masini_dupa_adaugare_ceo;
-    }
+//    public int getNr_masini_dupa_adaugare_ceo() {
+//        return nr_masini_dupa_adaugare_ceo;
+//    }
 
     public void AdaugareInGarajCeo() {
         int aux = VerificareNrMasiniInGaraj();
@@ -203,39 +203,75 @@ public class Garaj {
 //    }
 
 
+    int index_masina;
     public void EliminareDinGarajCeo() {
         int aux = VerificareNrMasiniInGaraj();
         System.out.println("aux = " + aux);
-        System.out.println("introduceti numarul de masini pe care vreti sa le eliminati in baza de date: ");
-        int nr_masini_eliminate_ceo = sc.nextInt();
-        //garaj = new Masina[nr_spatii_garaj];
 
-        for(int j = 1; j <= aux;j++)
+        int nr_masini_in_garaj = VerificareNrMasiniInGaraj();
+
+
+
+        System.out.println("introduceti indexul: ");
+        index_masina = sc.nextInt();
+
+        if(index_masina < nr_masini_in_garaj)
         {
-            for (int i = aux + 1; i <= nr_masini_eliminate_ceo + aux; i++) {
-                System.out.println("\n\nMasina de pe indexul" + i);
-                System.out.println("[" + i + "] " + "Marca: ");
-                marca = sc.next();
-                System.out.println("[" + i + "] " + "Model: ");
-                model = sc.next();
-                System.out.println("[" + i + "] " + "Vin: ");
-                vin = sc.nextInt();
-                System.out.println("[" + i + "] " + "Tip: ");
-                tip = sc.next();
-                System.out.println("[" + i + "] " + "HP: ");
-                hp = sc.nextInt();
-                System.out.println("[" + i + "] " + "culoare: ");
-                culoare = sc.next();
-                System.out.println("[" + i + "] " + "km: ");
-                km = sc.nextInt();
-                System.out.println("[" + i + "] " + "pret: ");
-                pret = sc.nextDouble();
+            for(int i = 1; i <= nr_masini_in_garaj - 1; i++)
+            {
+                for(int j = i + 1; j <= nr_masini_in_garaj; j++)
+                {
+                    if(i == index_masina)
+                    {
+                        for(int k = i; i <= nr_masini_in_garaj - 1; i++)
+                        {
+                            for (int l = k + 1; j <= nr_masini_in_garaj; j++)
+                            {
 
-                garaj[i] = new Masina(marca, model, tip, vin, hp, culoare, km, pret);
+                                garaj[k].marca = garaj[j].marca;
+                                garaj[k].model = garaj[j].model;
+                                garaj[k].tip = garaj[j].tip;
+                                garaj[k].km = garaj[j].km;
+                                garaj[k].culoare = garaj[j].culoare;
+                                int setare_vin = garaj[k].getVin();
+                                garaj[l].setVin(setare_vin);
+                                double setare_pret = garaj[k].getPret();
+                                garaj[l].setPret(setare_pret);
 
-
+                            }
+                        }
+                    }
+                }
             }
+
+
+
+                garaj[nr_masini_in_garaj] = null;
+//            garaj[nr_masini_in_garaj].marca = null;
+//            garaj[nr_masini_in_garaj].model = null;
+//            garaj[nr_masini_in_garaj].tip = null;
+//            garaj[nr_masini_in_garaj].culoare = null;
+//            garaj[nr_masini_in_garaj].setVin(0);
+//            garaj[nr_masini_in_garaj].km = 0;
+//            garaj[nr_masini_in_garaj].setPret(0);
+
+
         }
+        else
+        {
+            //eliminare ultimul element din vector
+            garaj[index_masina] = null;
+//            garaj[index_masina].model = null;
+//            garaj[index_masina].tip = null;
+//            garaj[index_masina].culoare = null;
+//            garaj[index_masina].setVin(0);
+//            garaj[index_masina].km = 0;
+//            garaj[index_masina].setPret(0);
+//
+        }
+
+
+
     }
 
 

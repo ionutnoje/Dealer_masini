@@ -34,4 +34,12 @@ public class Masina
     public int getVin() {
         return vin;
     }
+
+    public void setVin(int vin) {
+        this.vin = vin;
+    }
+
+    public void setPret(double pret) {
+        this.pret = pret;
+    }
 }

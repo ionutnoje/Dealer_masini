@@ -138,11 +138,12 @@ public class Meniuri {
 
                 System.out.println("MENIU CEO");
                 System.out.println("1.Introducere masina in baza de date");
-                System.out.println("2.Interogare sold firma");
-                System.out.println("3.Depozitare suma in contul firmei");
-                System.out.println("4.Retragere suma din contul firmei");
-                System.out.println("5.Revenire la meniul principal");
-                System.out.println("6.Iesire program");
+                System.out.println("2.Eliminati o masina din baza de date");
+                System.out.println("3.Interogare sold firma");
+                System.out.println("4.Depozitare suma in contul firmei");
+                System.out.println("5.Retragere suma din contul firmei");
+                System.out.println("6.Revenire la meniul principal");
+                System.out.println("7.Iesire program");
 
                 System.out.println("\nintroduceti cifra corespunzatoare optiunii dorite");
                 opt = sc.nextInt();
@@ -155,23 +156,26 @@ public class Meniuri {
                         grj.AdaugareInGarajCeo();
                         break;
                     case 2:
+                        grj.EliminareDinGarajCeo();
+                        break;
+                    case 3:
                         System.out.println("detineti " + cb.get_sold() + "$ in contul firmei");
 
                         break;
-                    case 3:
+                    case 4:
                         System.out.println("valoarea pe care vreti sa o depozitati: ");
                         int depunere_suma = sc.nextInt();
                         cb.depunereBani(depunere_suma);
                         break;
-                    case 4:
+                    case 5:
                         System.out.println("valoarea pe care vreti sa o retrageti: ");
                         int retragere_suma = sc.nextInt();
                         cb.retragereBani(retragere_suma);
                         break;
-                    case 5:
+                    case 6:
                         MeniuPrincipal();
                         break;
-                    case 6:
+                    case 7:
                         System.exit(0);
                     default:
                         break;
