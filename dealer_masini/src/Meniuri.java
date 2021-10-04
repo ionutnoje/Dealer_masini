@@ -493,6 +493,7 @@ public class Meniuri {
                     {
                         Thread.currentThread().interrupt();
                     }
+                grj.EliminareDinGarajCustomer(opt_cumparare);
                 System.out.println("Doriti sa iesiti din program?[Y/N]");
                 verificare_alegere = sc.next().charAt(0);
 

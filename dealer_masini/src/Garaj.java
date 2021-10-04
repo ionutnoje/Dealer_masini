@@ -274,5 +274,74 @@ public class Garaj {
 
     }
 
+    public void EliminareDinGarajCustomer(int index_masina_meniu_customer) {
+        int aux = VerificareNrMasiniInGaraj();
+        System.out.println("aux = " + aux);
+
+        int nr_masini_in_garaj = VerificareNrMasiniInGaraj();
+
+
+
+
+
+        if(index_masina_meniu_customer < nr_masini_in_garaj)
+        {
+            for(int i = 1; i <= nr_masini_in_garaj - 1; i++)
+            {
+                for(int j = i + 1; j <= nr_masini_in_garaj; j++)
+                {
+                    if(i == index_masina_meniu_customer)
+                    {
+                        for(int k = i; i <= nr_masini_in_garaj - 1; i++)
+                        {
+                            for (int l = k + 1; j <= nr_masini_in_garaj; j++)
+                            {
+
+                                garaj[k].marca = garaj[j].marca;
+                                garaj[k].model = garaj[j].model;
+                                garaj[k].tip = garaj[j].tip;
+                                garaj[k].km = garaj[j].km;
+                                garaj[k].culoare = garaj[j].culoare;
+                                int setare_vin = garaj[k].getVin();
+                                garaj[l].setVin(setare_vin);
+                                double setare_pret = garaj[k].getPret();
+                                garaj[l].setPret(setare_pret);
+
+                            }
+                        }
+                    }
+                }
+            }
+
+
+
+            garaj[nr_masini_in_garaj] = null;
+//            garaj[nr_masini_in_garaj].marca = null;
+//            garaj[nr_masini_in_garaj].model = null;
+//            garaj[nr_masini_in_garaj].tip = null;
+//            garaj[nr_masini_in_garaj].culoare = null;
+//            garaj[nr_masini_in_garaj].setVin(0);
+//            garaj[nr_masini_in_garaj].km = 0;
+//            garaj[nr_masini_in_garaj].setPret(0);
+
+
+        }
+        else
+        {
+            //eliminare ultimul element din vector
+            garaj[index_masina_meniu_customer] = null;
+//            garaj[index_masina].model = null;
+//            garaj[index_masina].tip = null;
+//            garaj[index_masina].culoare = null;
+//            garaj[index_masina].setVin(0);
+//            garaj[index_masina].km = 0;
+//            garaj[index_masina].setPret(0);
+//
+        }
+
+
+
+    }
+
 
 }
