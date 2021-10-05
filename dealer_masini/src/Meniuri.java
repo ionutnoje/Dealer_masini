@@ -121,6 +121,7 @@ public class Meniuri {
         cb.depunereBani(suma);
 
 
+
         ceo.Ceo(nume,sex,adresa,varsta);
 
         System.out.println(ceo.nume);
@@ -137,45 +138,64 @@ public class Meniuri {
             while(true) {
 
                 System.out.println("MENIU CEO");
-                System.out.println("1.Introducere masina in baza de date");
-                System.out.println("2.Eliminati o masina din baza de date");
-                System.out.println("3.Interogare sold firma");
-                System.out.println("4.Depozitare suma in contul firmei");
-                System.out.println("5.Retragere suma din contul firmei");
-                System.out.println("6.Revenire la meniul principal");
-                System.out.println("7.Iesire program");
+                System.out.println("1.Afisare masini din garaj");
+                System.out.println("2.Introducere masina in baza de date");
+                System.out.println("3.Eliminati o masina din baza de date");
+                System.out.println("4.Interogare sold firma");
+                System.out.println("5.Depozitare suma in contul firmei");
+                System.out.println("6.Retragere suma din contul firmei");
+                System.out.println("7.Revenire la meniul principal");
+                System.out.println("8.Iesire program");
 
                 System.out.println("\nintroduceti cifra corespunzatoare optiunii dorite");
                 opt = sc.nextInt();
 
                 switch (opt) {
                     case 1:
-                        //introducere masina in baza de date
-                        adaugare_ceo = 1;
-                        grj.ValIntroducereCeo(adaugare_ceo);
-                        grj.AdaugareInGarajCeo();
+                        grj.AfisareMasini();
                         break;
                     case 2:
-                        grj.EliminareDinGarajCeo();
+                        //introducere masina in baza de date
+//                        adaugare_ceo = 1;
+//                        grj.ValIntroducereCeo(adaugare_ceo);
+
+                        grj.AdaugareInGarajCeo();
                         break;
                     case 3:
-                        System.out.println("detineti " + cb.get_sold() + "$ in contul firmei");
-
+                        grj.EliminareDinGarajCeo();
                         break;
                     case 4:
+                        System.out.println("detineti " + cb.get_sold() + "$ in contul firmei");
+                        System.out.println("\nApasati orice tasta + ENTER ca sa va intoarceti la meniul Cumparator");
+                        buffer = sc.next();
+
+                        break;
+                    case 5:
                         System.out.println("valoarea pe care vreti sa o depozitati: ");
                         int depunere_suma = sc.nextInt();
                         cb.depunereBani(depunere_suma);
-                        break;
-                    case 5:
-                        System.out.println("valoarea pe care vreti sa o retrageti: ");
-                        int retragere_suma = sc.nextInt();
-                        cb.retragereBani(retragere_suma);
+                        System.out.println("Ati introdus " + depunere_suma + "$ in contul firmei!");
+                        System.out.println("\nApasati orice tasta + ENTER ca sa va intoarceti la meniul Cumparator");
+                        buffer = sc.next();
                         break;
                     case 6:
-                        MeniuPrincipal();
+                        System.out.println("valoarea pe care vreti sa o retrageti: ");
+                        int retragere_suma = sc.nextInt();
+                        if(cb.verificareRetragere(retragere_suma) == 1)
+                        {
+                            cb.retragereBani(retragere_suma);
+                            System.out.println("\nApasati orice tasta + ENTER ca sa va intoarceti la meniul Cumparator");
+                            buffer = sc.next();
+                        }
+                        else
+                        {
+                            System.out.println("Nu se poate efectua retragerea!");
+                        }
                         break;
                     case 7:
+                        MeniuPrincipal();
+                        break;
+                    case 8:
                         System.exit(0);
                     default:
                         break;
@@ -301,8 +321,6 @@ public class Meniuri {
 
                     System.out.println("afisare toate masinile din inventar");
                     grj.AfisareMasini();
-                    System.out.println("\nApasati orice tasta + ENTER ca sa va intoarceti la meniul Cumparator");
-                    buffer = sc.next();
                     MeniuCumparatorInitial();
 
                     break;
@@ -318,6 +336,9 @@ public class Meniuri {
                     break;
                 case 3:
                     System.out.println("Ati fost programat la test drive cu masina" + "   masina" + "pe data de 21 Noiembrie la ora 16:00");
+                    System.out.println("\nApasati orice tasta + ENTER ca sa va intoarceti la meniul Cumparator");
+                    buffer = sc.next();
+                    MeniuCumparatorInitial();
 
                     break;
                 case 4:
@@ -413,18 +434,34 @@ public class Meniuri {
                 break;
         }
     }
-
+    int opt_cumparare;
+    int nr_masini_cumparate;
     public void Cumparare()
     {
         System.out.println("\nIntroduceti indexul masinii pe care vreti sa o cumparati: ");
-        int opt_cumparare = sc.nextInt();
+        opt_cumparare = sc.nextInt();
+        System.out.println("\nIntroduceti cate masini vreti sa cumparati din acest model: ");
+        nr_masini_cumparate = sc.nextInt();
         System.out.println("Sunteti sigur de alegerea facuta?[Y/N]");
         char verificare_alegere = sc.next().charAt(0);
 
         if (verificare_alegere == 'Y' || verificare_alegere == 'y')
         {
+            if(grj.garaj[opt_cumparare].getStock() < nr_masini_cumparate)
+            {
+                System.out.println("NU SUNT SUFICIENTE MASINI IN STOCK!");
+                try
+                {
+                    Thread.sleep(2000);
+                }
+                catch(InterruptedException ex)
+                {
+                    Thread.currentThread().interrupt();
+                }
+                Cumparare();
+            }
 
-            double pret_final = (grj.garaj[opt_cumparare].getPret()) + (0.05 * grj.garaj[opt_cumparare].getPret());
+            double pret_final = ((grj.garaj[opt_cumparare].getPret()) + (0.05 * grj.garaj[opt_cumparare].getPret())) * nr_masini_cumparate;
             System.out.println("Pretul masinii este de: " + grj.garaj[opt_cumparare].getPret());
             System.out.println("Se aplica o taxa de 0.5 din valoarea masinii");
             try
@@ -493,7 +530,7 @@ public class Meniuri {
                     {
                         Thread.currentThread().interrupt();
                     }
-                grj.EliminareDinGarajCustomer(opt_cumparare);
+                grj.EliminareDinGarajCustomer(opt_cumparare,nr_masini_cumparate);
                 System.out.println("Doriti sa iesiti din program?[Y/N]");
                 verificare_alegere = sc.next().charAt(0);
 
@@ -518,6 +555,8 @@ public class Meniuri {
                     {
                         Thread.currentThread().interrupt();
                     }
+
+
                 System.out.println("Doriti sa depuneti bani in cont?[Y/N]");
                 verificare_alegere = sc.next().charAt(0);
 
@@ -526,21 +565,22 @@ public class Meniuri {
                     System.out.println("Introduceti suma: ");
                     int depunere = sc.nextInt();
                     cb.depunereBani(depunere);
-                        try
-                        {
-                            Thread.sleep(2000);
-                        }
-                        catch(InterruptedException ex)
-                        {
-                            Thread.currentThread().interrupt();
-                        }
-                    System.out.println("Se revine la Meniul Cumparare!!");
-                    Cumparare();
+
+                    System.out.println("se revine la meniul Cumparare");
+                    try
+                    {
+                        Thread.sleep(2000);
+                    }
+                    catch(InterruptedException ex)
+                    {
+                        Thread.currentThread().interrupt();
+                    }
+                    MeniuCumparare();
                 }
-                else
+                else if (verificare_alegere == 'N' || verificare_alegere == 'n')
                 {
                     System.out.println("Alegeti alta masina!");
-                    Cumparare();
+                    MeniuCumparare();
                 }
             }
 
@@ -549,7 +589,7 @@ public class Meniuri {
 
         if (verificare_alegere == 'n' || verificare_alegere == 'N')
         {
-            Cumparare();
+            MeniuCumparare();
         }
     }
 
